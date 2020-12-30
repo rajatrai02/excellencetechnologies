@@ -1,0 +1,40 @@
+CREATE TABLE dbo.Candidate (
+[Name] varchar(50)
+,[Email Address] nvarchar(200)
+);
+
+CREATE TABLE dbo.Test_Score(
+[Name] varchar(50)
+,[First_Round] int
+,[Second_round] int
+,[Thrid_Round] int
+)
+
+--------1 st API to insert data into tables------------------
+
+INSERT INTO dbo.Candidate ([Name],[Email Address])
+VALUES ('Rajat','rajatrai1234@gmail.com')
+
+INSERT INTO dbo.Candidate ([Name],[Email Address])
+VALUES ('Rohan','rohan1234@gmail.com')
+
+INSERT INTO dbo.Candidate ([Name],[Email Address])
+ VALUES ('Rishabh','rishabh1234@gmail.com')
+ 
+INSERT INTO dbo.Test_Score([Name],[First_Round],[Second_round],[Thrid_Round])
+Values ('Rohan',8,9,7)
+
+INSERT INTO dbo.Test_Score([Name],[First_Round],[Second_round],[Thrid_Round])
+Values ('Rajat',10,7,6)
+
+INSERT INTO dbo.Test_Score([Name],[First_Round],[Second_round],[Thrid_Round])
+Values ('Rishabh',9,7,6)
+
+-----------2nd API to find the maximum scored candidate and avg---------
+
+SELECT  top 1 Name ,([First_Round]+[Second_round]+[Thrid_Round]) Totalscore ,
+AVG([First_Round]) Avg_First_Round ,AVG([Second_round]) Avg_Second_round ,
+AVG([Thrid_Round]) Avg_Thrid_Round
+FROM dbo.Test_Score
+GROUP BY Name,[First_Round],[Second_round],[Thrid_Round]
+ORDER BY  2 DESC
